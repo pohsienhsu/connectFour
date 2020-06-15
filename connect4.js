@@ -9,7 +9,7 @@ const WIDTH = 7;
 const HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** Creating random Colors */
 const randomColors = () => {
@@ -131,12 +131,29 @@ function endGame(msg) {
   // TODO: pop up alert message
   const playerIndicate = document.querySelector("#player");
   playerIndicate.style.color = "";
-  playerIndicate.style.fontSize = "4rem";
-  playerIndicate.textContent = `PLAYER ${currPlayer} WON!`;
+  playerIndicate.style.fontSize = "3rem";
+  playerIndicate.textContent = msg;
   const arrows = document.querySelectorAll("#column-top td i");
   for (let arrow of arrows) {
     arrow.style.display = "none";
   };
+  if (msg === "TIE!") {
+    playerIndicate.style.textShadow = "3px 3px 0 purple";
+  };
+  const restart = document.querySelector('#restart i');
+  restart.style.display = "block";
+  restart.addEventListener("click", function(e) {
+    const theBoard = document.querySelector('#board');
+    theBoard.innerHTML = "";
+    board = [];
+    makeBoard();
+    makeHtmlBoard();
+    restart.style.display = "none";
+    currPlayer = 1;
+    playerIndicate.textContent = "PLAYER 1";
+    playerIndicate.style.fontSize = "2rem";
+    playerIndicate.style.textShadow = "3px 3px 0 red";
+  })
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -163,9 +180,9 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-  const isFilled = board.every(val => val === null);
+  const isFilled = board.every(val => val.every(value => value !== null));
   if (isFilled) {
-    return endGame("It's a tie!");
+    return endGame("TIE!");
   }
 
   // switch players
@@ -195,7 +212,7 @@ function checkForWin() {
   }
 
   // TODO: read and understand this code. Add comments to help you.
-
+  
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
       const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];

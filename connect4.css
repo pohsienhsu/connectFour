@@ -47,6 +47,17 @@ h1 i{
     transition: all 300ms;
 }
 
+#restart i{
+    color: rgb(60, 59, 61);
+    font-size: 3rem;
+    transition: color 300ms;
+    display: none;
+}
+#restart i:hover {
+    color: white;
+}
+
+
 #board {
   display: block;
   transition: color, 500ms;
