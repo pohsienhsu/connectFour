@@ -1,0 +1,97 @@
+/* Making the whole board center in the page */
+html, body{
+  padding: 0;
+  margin: 0;
+}
+html{
+  height: 100%;
+}
+body{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Baloo Chettan 2', cursive;
+  background-color: black;
+}
+
+/* game board table */
+#container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+h1 {
+    color: gold;
+    margin: 0 auto 30spx auto;
+    font-size: 4rem;
+    transition: color, 2000ms;
+}
+h1 span {
+    transition: color, 2000ms;
+}
+h1 i{
+    transition: color, 2000ms;
+}
+
+#start {
+
+}
+
+#player {
+    font-size: 2rem;
+    color: white;
+    text-shadow: 3px 3px 0 red;
+    transition: all 300ms;
+}
+
+#board {
+  display: block;
+  transition: color, 500ms;
+}
+#board td {
+  width: 65px;
+  height: 65px;
+  border: solid 1px #666;
+  transition: color, 500ms;
+  text-align: center;
+}
+
+/* pieces are div within game table cells: draw as colored circles */
+
+.piece {
+  /* TODO: make into circles */
+  border-radius: 50%;
+  border: solid 2px white;
+  margin: 5px;
+  width: 80%;
+  height: 80%;
+  text-align: center;
+}
+
+/* TODO: make pieces red/blue,  depending on player 1/2 piece */
+.p1 {
+    background-color: red;
+}
+
+.p2 {
+    background-color: blue;
+}
+
+/* column-top is table row of clickable areas for each column */
+
+#column-top td {
+  border: none;
+  text-align: center;
+}
+#column-top td i {
+    font-size: 3rem;
+    color: rgb(60, 59, 61);
+    transition: color, 500ms
+}
+
+/* #column-top td i:hover{
+    color: gold;
+} */
